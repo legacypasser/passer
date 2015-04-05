@@ -6,7 +6,7 @@ class Trade extends Model {
 
 	//
     protected $table = 'trade';
-    protected $fillable = ['buyer','seller','description', 'img'];
+    protected $fillable = ['id','buyer','seller','description', 'img'];
     protected $incrementing = false;
     public $timestamps = false;
 
@@ -16,4 +16,5 @@ class Trade extends Model {
     public function seller(){
         return $this->belongsTo('App\Mate', 'phone', 'seller');
     }
+
 }

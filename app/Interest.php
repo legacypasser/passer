@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Interest extends Model {
-	
+
 	protected $table = 'interest';
 	protected $fillable = ['res','wanderer'];
 	protected $incrementing = false;

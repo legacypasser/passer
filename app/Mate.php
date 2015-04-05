@@ -5,8 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 class Mate extends Model {
 
 	//
+    protected $primaryKey = 'phone';
     protected $table = 'mate';
-    protected $fillable = ['phone','password','nickname', 'school','major','inform'];
+    protected $fillable = ['phone','password','nickname', 'school','major', 'inform'];
     protected $incrementing = false;
     public $timestamps = false;
 
