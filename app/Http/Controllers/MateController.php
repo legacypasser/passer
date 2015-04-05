@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Session;
 
 class MateController extends Controller {
     public function register(){
+        return "hello";
         $mate = Mate::create(['phone'=>Input::get('phone'),
             'password'=>Input::get('password'),
             'nickname'=>Input::get('nickname'),
             'school'=>Input::get('school'),
             'major'=>Input::get('school'),
             'inform'=>false]);
+        return 'success';
     }
 
     public function login(){

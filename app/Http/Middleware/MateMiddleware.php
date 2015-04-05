@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Session;
 
 class MateMiddleware {
 
@@ -13,6 +14,9 @@ class MateMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
+        if(Session::get('mate') == null)
+            return $request->path();
+            return 'not_login';
 		return $next($request);
 	}
 

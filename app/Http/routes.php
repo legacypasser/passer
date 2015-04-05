@@ -13,24 +13,24 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::post('register','MateController@register');
+Route::post('register',['uses'=>'MateController@register']);
 
-Route::post('login','MateController@login');
+Route::post('login',['uses'=>'MateController@login']);
 
-Route::get('recommend','PostController@recommend');
+Route::get('recommend',['middleware'=>'mate', 'uses'=>'PostController@recommend']);
 
-Route::get('search','PostController@search');
+Route::get('search',['middleware'=>'mate', 'uses'=>'PostController@search']);
 
-Route::get('personal','PostController@personal');
+Route::get('personal',['middleware'=>'mate', 'uses'=>'PostController@personal']);
 
-Route::get('detail','PostController@detail');
+Route::get('detail',['middleware'=>'mate', 'uses'=>'PostController@detail']);
 
-Route::post('publish', 'PostController@publish');
+Route::post('publish', ['middleware'=>'mate', 'uses'=>'PostController@publish']);
 
-Route::post('finish', 'TradeController@finish');
+Route::post('finish', ['middleware'=>'mate', 'uses'=>'TradeController@finish']);
 
-Route::get('offline', 'MessageController@offlineMessage');
+Route::get('offline', ['middleware'=>'mate', 'uses'=>'MessageController@offlineMessage']);
 
-Route::post('chat', 'MessageController@chat');
+Route::post('chat', ['middleware'=>'mate', 'uses'=>'MessageController@chat']);
 
 
