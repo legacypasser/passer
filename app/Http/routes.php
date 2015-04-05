@@ -19,7 +19,7 @@ Route::post('login','MateController@login');
 
 Route::get('recommend','PostController@recommend');
 
-Rotue::get('search','PostController@search');
+Route::get('search','PostController@search');
 
 Route::get('personal','PostController@personal');
 
