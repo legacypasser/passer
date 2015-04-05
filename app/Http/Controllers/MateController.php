@@ -11,11 +11,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Mate;
 
 class MateController extends Controller {
     public function register(){
-        return "hello";
-        $mate = Mate::create(['phone'=>Input::get('phone'),
+        Mate::create(['phone'=>Input::get('phone'),
             'password'=>Input::get('password'),
             'nickname'=>Input::get('nickname'),
             'school'=>Input::get('school'),

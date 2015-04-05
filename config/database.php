@@ -54,9 +54,9 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => env('DB_HOST', '114.215.110.22'),
+			'host'      => env('DB_HOST', 'www.hereprovides.com'),
 			'database'  => env('DB_DATABASE', 'legacybase'),
-			'username'  => env('DB_USERNAME', 'root'),
+			'username'  => env('DB_USERNAME', 'developer'),
 			'password'  => env('DB_PASSWORD', 'code4better'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',

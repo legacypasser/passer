@@ -8,7 +8,7 @@ class Mate extends Model {
     protected $primaryKey = 'phone';
     protected $table = 'mate';
     protected $fillable = ['phone','password','nickname', 'school','major', 'inform'];
-    protected $incrementing = false;
+    public $incrementing = false;
     public $timestamps = false;
 
     public function legacies(){

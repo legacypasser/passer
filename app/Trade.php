@@ -7,7 +7,7 @@ class Trade extends Model {
 	//
     protected $table = 'trade';
     protected $fillable = ['id','buyer','seller','description', 'img'];
-    protected $incrementing = false;
+    public $incrementing = false;
     public $timestamps = false;
 
     public function buyer(){

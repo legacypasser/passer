@@ -6,7 +6,7 @@ class Interest extends Model {
 
 	protected $table = 'interest';
 	protected $fillable = ['res','wanderer'];
-	protected $incrementing = false;
+	public $incrementing = false;
 	public $timestamps = false;
 	//
     public function res(){

@@ -7,7 +7,7 @@ class Message extends Model {
 	//
     protected $table = 'message';
     protected $fillable = ['sender','receiver','content'];
-    protected $incrementing = false;
+    public $incrementing = false;
     public $timestamps = false;
     public function sender(){
         return $this->belongsTo('App\Mate','phone','sender');

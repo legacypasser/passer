@@ -15,7 +15,6 @@ class MateMiddleware {
 	public function handle($request, Closure $next)
 	{
         if(Session::get('mate') == null)
-            return $request->path();
             return 'not_login';
 		return $next($request);
 	}
