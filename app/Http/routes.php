@@ -12,25 +12,3 @@
 */
 
 Route::get('/', 'WelcomeController@index');
-
-Route::post('register','MateController@register');
-
-Route::post('login','MateController@login');
-
-Route::get('recommend','PostController@recommend');
-
-Route::get('search','PostController@search');
-
-Route::get('personal','PostController@personal');
-
-Route::get('detail','PostController@detail');
-
-Route::post('publish', 'PostController@publish');
-
-Route::post('finish', 'TradeController@finish');
-
-Route::get('offline', 'MessageController@offlineMessage');
-
-Route::post('chat', 'MessageController@chat');
-
-
