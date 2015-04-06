@@ -9,11 +9,11 @@ class Interest extends Model {
 	public $incrementing = false;
 	public $timestamps = false;
 	//
-    public function res(){
-        return $this->belongsTo('App\Legacy', 'id', 'res');
+    public function legacy(){
+        return $this->belongsTo('App\Legacy', 'res', 'id');
     }
 
-    public function wanderer(){
-        return$this->belongsTo('App\Mate', 'phone', 'wanderer');
+    public function theWanderer(){
+        return $this->belongsTo('App\Mate', 'wanderer', 'id');
     }
 }

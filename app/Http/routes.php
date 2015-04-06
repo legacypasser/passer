@@ -29,6 +29,8 @@ Route::post('publish', ['middleware'=>'mate', 'uses'=>'PostController@publish'])
 
 Route::post('finish', ['middleware'=>'mate', 'uses'=>'TradeController@finish']);
 
-Route::get('offline', ['middleware'=>'mate', 'uses'=>'MessageController@offlineMessage']);
+Route::get('online', ['middleware'=>'mate', 'uses'=>'MessageController@offlineMessage']);
 
 Route::post('chat', ['middleware'=>'mate', 'uses'=>'MessageController@chat']);
+
+Route::post('interest', ['middleware'=>'mate', 'uses'=>'TradeController@interest']);

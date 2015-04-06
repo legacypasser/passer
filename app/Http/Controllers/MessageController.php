@@ -8,15 +8,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\MateMiddleware;
+use App\Message;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use App\Mate;
 
+class MessageController extends Controller{
 
-class MessageController {
-
-    public function offlineMesage(){
-
+    public function offlineMessage(){
+        $mate = Mate::find(Session::get(MateMiddleware::$VERIFY));
+        if($mate->inform == false){
+            return 'empty';
+        }else{
+            $record = $mate->coming();
+            $result = json_encode($record->get(['sender','edit','content']), JSON_UNESCAPED_UNICODE);
+            DB::beginTransaction();
+            $mate->inform = false;
+            $mate->save();
+            $record->delete();
+            DB::commit();
+            return $result;
+        }
     }
 
     public function chat(){
-
+        $receiverId = Input::get('receiver');
+        DB::beginTransaction();
+        Message::create(['sender'=>Session::get(MateMiddleware::$VERIFY),'receiver'=>$receiverId,'content'=>Input::get('content')]);
+        $mate = Mate::find($receiverId);
+        $mate->inform = true;
+        $mate->save();
+        DB::commit();
+        return 'stored';
     }
+
 } 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 
 class MateMiddleware {
 
+    public static $VERIFY = 'mate_number';
 	/**
 	 * Handle an incoming request.
 	 *
@@ -14,7 +15,7 @@ class MateMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-        if(Session::get('mate') == null)
+        if(Session::get(MateMiddleware::$VERIFY) == null)
             return 'not_login';
 		return $next($request);
 	}

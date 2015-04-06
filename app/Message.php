@@ -9,10 +9,10 @@ class Message extends Model {
     protected $fillable = ['sender','receiver','content'];
     public $incrementing = false;
     public $timestamps = false;
-    public function sender(){
-        return $this->belongsTo('App\Mate','phone','sender');
+    public function theSender(){
+        return $this->belongsTo('App\Mate','sender','id');
     }
-    public function receiver(){
-        return $this->belongsTo('App\Mate', 'phone','receiver');
+    public function theReceiver(){
+        return $this->belongsTo('App\Mate', 'receiver','id');
     }
 }

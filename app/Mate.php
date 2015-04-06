@@ -5,31 +5,30 @@ use Illuminate\Database\Eloquent\Model;
 class Mate extends Model {
 
 	//
-    protected $primaryKey = 'phone';
     protected $table = 'mate';
-    protected $fillable = ['phone','password','nickname', 'school','major', 'inform'];
+    protected $fillable = ['email','password','nickname', 'school','major', 'inform'];
     public $incrementing = false;
     public $timestamps = false;
 
     public function legacies(){
-        return $this->hasMany('App\Legacy', 'seller', 'phone');
+        return $this->hasMany('App\Legacy', 'seller', 'id');
     }
 
     public function sales(){
-        return $this->hasMany('App\Trade', 'seller', 'phone');
+        return $this->hasMany('App\Trade', 'seller', 'id');
     }
 
     public function purchases(){
-        return $this->hasMany('App\Trade', 'buyer', 'phone');
+        return $this->hasMany('App\Trade', 'buyer', 'id');
     }
 
     public function sent(){
-        return $this->hasMany('App\Message', 'sender', 'phone');
+        return $this->hasMany('App\Message', 'sender', 'id');
     }
     public function coming(){
-        return $this->hasMany('App\Message', 'receiver', 'phone');
+        return $this->hasMany('App\Message', 'receiver', 'id');
     }
-    public function wanders(){
-        return $this->hasMany('App\Interest', 'wanderer', 'phone');
+    public function interests(){
+        return $this->hasMany('App\Interest', 'wanderer', 'id');
     }
 }
