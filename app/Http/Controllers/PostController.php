@@ -48,7 +48,7 @@ class PostController extends Controller{
     }
 
     public function detail(){
-        return json_encode(Legacy::find(Input::get('id'))->get(['des', 'img','seller', 'publish']));
+        return json_encode(Legacy::find(Input::get('id')), JSON_UNESCAPED_UNICODE);
     }
 
     public function publish(){
