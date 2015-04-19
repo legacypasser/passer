@@ -48,7 +48,10 @@ class PostController extends Controller{
     }
 
     public function detail(){
-        return json_encode(Legacy::find(Input::get('id')), JSON_UNESCAPED_UNICODE);
+        $legacy = Legacy::find(Input::get('id'));
+        $seller = $legacy->owner;
+        $result = ['des'=>$legacy->des, 'seller'=>$seller->id, 'nickname'=>$seller->nickname];
+        return json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
     public function publish(){
