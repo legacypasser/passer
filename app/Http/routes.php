@@ -17,7 +17,7 @@ Route::post('register',['uses'=>'MateController@register']);
 
 Route::post('login',['uses'=>'MateController@login']);
 
-Route::get('recommend',['middleware'=>'mate', 'uses'=>'PostController@recommend']);
+Route::get('recommend',[ 'uses'=>'PostController@recommend']);
 
 Route::get('search',['middleware'=>'mate', 'uses'=>'PostController@search']);
 
