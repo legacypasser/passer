@@ -7,7 +7,6 @@ class Legacy extends Model {
 	//
     protected $table = 'legacy';
     protected $fillable = ['des','seller','img', 'abs'];
-    public $incrementing = false;
     public $timestamps = false;
 
     public function owner(){
