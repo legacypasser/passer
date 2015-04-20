@@ -68,11 +68,11 @@ class PostController extends Controller{
         }
         $fully = Input::get('des');
         $abs = substr($fully, 0 , 90).'...';
-        Legacy::create(['des'=>$fully,
+        $legacy = Legacy::create(['des'=>$fully,
             'seller'=>Session::get(MateMiddleware::$VERIFY),
             'img'=>$finalImg,
             'abs'=>$abs]);
-        return 'success';
+        return $legacy->id;
     }
 
 } 

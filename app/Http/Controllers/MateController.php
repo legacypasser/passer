@@ -17,13 +17,13 @@ use App\Mate;
 
 class MateController extends Controller {
     public function register(){
-        Mate::create(['email'=>Input::get('email'),
+        $mate = Mate::create(['email'=>Input::get('email'),
             'password'=>Input::get('password'),
             'nickname'=>Input::get('nickname'),
             'school'=>Input::get('school'),
             'major'=>Input::get('major'),
             'inform'=>false]);
-        return 'success';
+        return $mate->id;
     }
 
     public function login(){
