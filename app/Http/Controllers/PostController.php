@@ -34,7 +34,7 @@ class PostController extends Controller{
         $result = [];
         foreach($legacies as $legacy)
             $result[] = ['id'=>$legacy->id, 'abs'=>$legacy->abs, 'img'=>$legacy->img,'publish'=>$legacy->publish];
-        return json_encode($result, JSON_UNESCAPED_UNICODE);
+        return json_encode($result);
     }
 
     public function search(){
@@ -52,7 +52,7 @@ class PostController extends Controller{
         $legacy = Legacy::find(Input::get('id'));
         $seller = $legacy->owner;
         $result = ['des'=>$legacy->des, 'seller'=>$seller->id, 'nickname'=>$seller->nickname];
-        return json_encode($result, JSON_UNESCAPED_UNICODE);
+        return json_encode($result);
     }
 
     public function publish(){
