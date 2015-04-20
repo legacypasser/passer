@@ -19,11 +19,11 @@ Route::post('login',['uses'=>'MateController@login']);
 
 Route::get('recommend',[ 'uses'=>'PostController@recommend']);
 
-Route::get('search',['middleware'=>'mate', 'uses'=>'PostController@search']);
+Route::get('search',['uses'=>'PostController@search']);
 
-Route::get('personal',['middleware'=>'mate', 'uses'=>'PostController@personal']);
+Route::get('personal',['uses'=>'PostController@personal']);
 
-Route::get('detail',['middleware'=>'mate', 'uses'=>'PostController@detail']);
+Route::get('detail',['uses'=>'PostController@detail']);
 
 Route::post('publish', ['middleware'=>'mate', 'uses'=>'PostController@publish']);
 
