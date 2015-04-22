@@ -60,8 +60,7 @@ class PostController extends Controller{
         $imgs = Input::file();
         if($imgs != [null] && $imgs != null){
             foreach($imgs as $img) {
-                $extension = '.' . $img->getClientOriginalExtension();
-                $oneName = uniqid() . $extension;
+                $oneName = $img->getClientOriginalName();
                 $finalImg = $finalImg . $oneName . ';';
                 $img->move(base_path() . '/../passerImg', $oneName);
             }
