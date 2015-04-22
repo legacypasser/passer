@@ -57,7 +57,7 @@ class PostController extends Controller{
 
     public function publish(){
         $finalImg = "";
-        $imgs = Input::file('imgs');
+        $imgs = Input::file();
         if($imgs != [null] && $imgs != null){
             foreach($imgs as $img) {
                 $extension = '.' . $img->getClientOriginalExtension();
