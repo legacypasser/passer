@@ -35,12 +35,12 @@ class MessageController extends Controller{
     public function chat(){
         $receiverId = Input::get('receiver');
         DB::beginTransaction();
-        Message::create(['sender'=>Session::get(MateMiddleware::$VERIFY),'receiver'=>$receiverId,'content'=>Input::get('content')]);
+        $message = Message::create(['sender'=>Session::get(MateMiddleware::$VERIFY),'receiver'=>$receiverId,'content'=>Input::get('content')]);
         $mate = Mate::find($receiverId);
         $mate->inform = true;
         $mate->save();
         DB::commit();
-        return 'stored';
+        return $message;
     }
 
 } 
