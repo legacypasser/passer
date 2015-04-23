@@ -22,8 +22,7 @@ class MessageController extends Controller{
         if($mate->inform == false){
             return 'empty';
         }else{
-            $record = $mate->coming();
-            $result = json_encode($record->get(['sender','edit','content']), JSON_UNESCAPED_UNICODE);
+            $result = json_encode($mate->coming);
             DB::beginTransaction();
             $mate->inform = false;
             $mate->save();
