@@ -40,7 +40,8 @@ class MessageController extends Controller{
         $mate->inform = true;
         $mate->save();
         DB::commit();
-        return $message;
+        $result = ['id'=>$message->id, 'sender'=>$message->sender, 'receiver'=>$message->receiver, 'content'=>$message->content, 'edit'=>$message->edit];
+        return $result;
     }
 
 } 
