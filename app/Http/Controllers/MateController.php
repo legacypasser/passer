@@ -36,7 +36,7 @@ class MateController extends Controller {
         }
         if($mate->password == $password) {
             Session::put(MateMiddleware::$VERIFY, $mate->id);
-            return 'success';
+            return $mate;
         }else
             return 'password_fail';
     }
