@@ -41,4 +41,9 @@ class MateController extends Controller {
             return 'password_fail';
     }
 
+    public function info(){
+        $mate = Mate::find(Input::get('id'));
+        $result = ['id'=>$mate->id, 'nickname'=>$mate->id];
+        return $result;
+    }
 }

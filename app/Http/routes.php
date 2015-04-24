@@ -34,3 +34,5 @@ Route::get('online', ['middleware'=>'mate', 'uses'=>'MessageController@offlineMe
 Route::post('chat', ['middleware'=>'mate', 'uses'=>'MessageController@chat']);
 
 Route::post('interest', ['middleware'=>'mate', 'uses'=>'TradeController@interest']);
+
+Route::get('info', ['uses'=>'MateController@info']);
