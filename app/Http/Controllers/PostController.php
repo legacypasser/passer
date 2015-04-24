@@ -38,7 +38,7 @@ class PostController extends Controller{
     }
 
     public function search(){
-        $legacies = DB::select('SELECT id,abs ,img,publish FROM legacy WHERE MATCH (des) AGAINST (? IN BOOLEAN MODE)',[Input::get('keyword')]);
+        $legacies = DB::select('SELECT id,abs ,img,publish FROM legacy WHERE MATCH (des) AGAINST (? IN BOOLEAN MODE)',[Input::get('keyword')])->get();
         return $this->buildAbsResult($legacies);
     }
 
