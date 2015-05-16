@@ -50,8 +50,7 @@ class PostController extends Controller{
 
     public function detail(){
         $legacy = Legacy::find(Input::get('id'));
-        $seller = $legacy->owner;
-        $result = ['des'=>$legacy->des, 'seller'=>$seller->id, 'nickname'=>$seller->nickname];
+        $result = ['des'=>$legacy->des, 'seller'=>$legacy->seller];
         return json_encode($result);
     }
 
@@ -66,7 +65,10 @@ class PostController extends Controller{
             }
         }
         $fully = Input::get('des');
+	if(strlen($fully) > 90)
         $abs = substr($fully, 0 , 90).'...';
+	else
+	$abs = $fully;
         $legacy = Legacy::create(['des'=>$fully,
             'seller'=>Session::get(MateMiddleware::$VERIFY),
             'img'=>$finalImg,

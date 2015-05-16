@@ -43,7 +43,7 @@ class MateController extends Controller {
 
     public function info(){
         $mate = Mate::find(Input::get('id'));
-        $result = ['id'=>$mate->id, 'nickname'=>$mate->id];
+        $result = ['id'=>$mate->id, 'nickname'=>$mate->nickname];
         return $result;
     }
 }
