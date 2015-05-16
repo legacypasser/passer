@@ -33,7 +33,7 @@ class PostController extends Controller{
     private function buildAbsResult($legacies){
         $result = [];
         foreach($legacies as $legacy)
-            $result[] = ['id'=>$legacy->id, 'abs'=>$legacy->abs, 'img'=>$legacy->img,'publish'=>$legacy->publish];
+            $result[] = ['id'=>$legacy->id, 'abs'=>$legacy->abs, 'img'=>$legacy->img,'publish'=>$legacy->publish, 'price'=>$legacy->price];
         return json_encode($result);
     }
 
@@ -65,6 +65,7 @@ class PostController extends Controller{
             }
         }
         $fully = Input::get('des');
+        $price = Input::get('price');
 	if(strlen($fully) > 90)
         $abs = substr($fully, 0 , 90).'...';
 	else
@@ -72,7 +73,8 @@ class PostController extends Controller{
         $legacy = Legacy::create(['des'=>$fully,
             'seller'=>Session::get(MateMiddleware::$VERIFY),
             'img'=>$finalImg,
-            'abs'=>$abs]);
+            'abs'=>$abs,
+            'price'=>$price]);
         return $legacy->id;
     }
 
