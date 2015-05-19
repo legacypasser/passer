@@ -38,7 +38,7 @@ class PostController extends Controller{
     }
 
     public function search(){
-        return DB::select('select id,abs,img,publish,price from legacy where des like  ? ;',['%'.Input::get('keyword').'%']);
+        return DB::select('select id,abs,img,publish,price,seller from legacy where des like  ? ;',['%'.Input::get('keyword').'%']);
 
     }
 
