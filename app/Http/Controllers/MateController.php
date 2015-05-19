@@ -22,7 +22,9 @@ class MateController extends Controller {
             'nickname'=>Input::get('nickname'),
             'school'=>Input::get('school'),
             'major'=>Input::get('major'),
-            'inform'=>false]);
+            'inform'=>false,
+            'lati'=>Input::get('lati'),
+            'longi'=>Input::get('longi')]);
         return $mate->id;
     }
 
@@ -43,7 +45,7 @@ class MateController extends Controller {
 
     public function info(){
         $mate = Mate::find(Input::get('id'));
-        $result = ['id'=>$mate->id, 'nickname'=>$mate->nickname];
+        $result = ['id'=>$mate->id, 'nickname'=>$mate->nickname, 'school'=>$mate->school, 'major'=>$mate->major, 'lati'=>$mate->lati, 'longi'=>longi];
         return $result;
     }
 }
