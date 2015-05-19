@@ -45,7 +45,7 @@ class MateController extends Controller {
 
     public function info(){
         $mate = Mate::find(Input::get('id'));
-        $result = ['id'=>$mate->id, 'nickname'=>$mate->nickname, 'school'=>$mate->school, 'major'=>$mate->major, 'lati'=>$mate->lati, 'longi'=>longi];
+        $result = ['id'=>$mate->id, 'nickname'=>$mate->nickname, 'school'=>$mate->school, 'major'=>$mate->major, 'lati'=>$mate->lati, 'longi'=>$mate->longi];
         return $result;
     }
 }
