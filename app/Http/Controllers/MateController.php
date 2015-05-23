@@ -22,6 +22,9 @@ class MateController extends Controller {
             'nickname'=>Input::get('nickname'),
             'school'=>Input::get('school'),
             'major'=>Input::get('major'),
+            'schoolid'=>input::get('schoolid'),
+            'majorid'=>input::get('majorid'),
+            'region'=>input::get('region'),
             'inform'=>false,
             'lati'=>Input::get('lati'),
             'longi'=>Input::get('longi')]);
