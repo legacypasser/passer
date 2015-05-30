@@ -55,27 +55,26 @@ class PostController extends Controller{
     }
 
     public function publish(){
-        $finalImg = "";
         $imgs = Input::file();
         if($imgs != [null] && $imgs != null){
             foreach($imgs as $img) {
                 $oneName = $img->getClientOriginalName();
-                $finalImg = $finalImg . $oneName . ';';
                 $img->move(base_path() . '/../passerImg', $oneName);
             }
         }
-        $fully = Input::get('des');
-        $price = Input::get('price');
-	if(strlen($fully) > 90)
-        $abs = substr($fully, 0 , 90).'...';
-	else
-	$abs = $fully;
-        $legacy = Legacy::create(['des'=>$fully,
-            'seller'=>Session::get(MateMiddleware::$VERIFY),
-            'img'=>$finalImg,
-            'abs'=>$abs,
-            'price'=>$price]);
-        return $legacy->id;
+        $content = Input::get('content');
+        $postArray = json_decode($content, TRUE);
+        $result = "";
+        foreach($postArray as $item){
+            $legacy = Legacy::create(['des'=>$item["des"],
+                'seller'=>Session::get(MateMiddleware::$VERIFY),
+                'img'=>$item['img'],
+                'abs'=>$item['abs'],
+                'price'=>$item['price'],
+                'type'=>$item['type']]);
+            $result = $result . $legacy->id . ";";
+        }
+        return substr($result, 0, -1);
     }
 
 } 
