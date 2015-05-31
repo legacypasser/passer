@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Session;
 class PostController extends Controller{
 
     public function recommend(){
+        if(Session::get(MateMiddleware::$VERIFY) == null){
+            $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(30);
+            return $this->buildAbsResult($result);
+        }
         $mate = Mate::find(Session::get(MateMiddleware::$VERIFY));
         $schooler = Mate::where('schoolid', '=', $mate->schoolid)->orderBy('register', 'desc')->get(['id'])->toArray();
         $regional = Mate::where('region', '=', $mate->region)->whereNotIn('id', $schooler)->orderBy('register', 'desc')->get(['id'])->toArray();
