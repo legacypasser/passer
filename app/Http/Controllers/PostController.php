@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Session;
 class PostController extends Controller{
 
     private static $PEERS = 'peers';
-
+	private static $EACHPAGE = 16;
     public function recommend(){
         if(Session::get(MateMiddleware::$VERIFY) == null){
-            $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(30);
+            $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(PostController::$EACHPAGE);
             return $this->buildAbsResult($result);
         }
         if(Session::get(PostController::$PEERS) != null)
@@ -32,9 +32,9 @@ class PostController extends Controller{
             $possible = $this->getPeer(Session::get(MateMiddleware::$VERIFY));
         $resultPre = Legacy::whereIn('seller', $possible)->orderBy('publish', 'asc');
         if($resultPre->count() == 0)
-            $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(30);
+            $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(PostController::$EACHPAGE);
         else
-            $result = $resultPre->paginate(30);
+            $result = $resultPre->paginate(PostController::$EACHPAGE);
         return $this->buildAbsResult($result);
     }
 
