@@ -13,11 +13,16 @@ use App\Http\Middleware\MateMiddleware;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Mail;
 use App\Mate;
 
 class MateController extends Controller {
     public function register(){
-        $mate = Mate::create(['email'=>Input::get('email'),
+        $email = Input::get('email');
+        Mail::send('register',compact($email), function($message) use($email){
+            $message->to($email, 'xiaopan')->subject('hello');
+        });
+        $mate = Mate::create(['email'=>$email,
             'password'=>Input::get('password'),
             'nickname'=>Input::get('nickname'),
             'school'=>Input::get('school'),
