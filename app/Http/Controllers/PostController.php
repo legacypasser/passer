@@ -33,7 +33,7 @@ class PostController extends Controller{
     private function buildAbsResult($legacies){
         $result = [];
         foreach($legacies as $legacy)
-            $result[] = ['id'=>$legacy->id, 'seller'=>$legacy->seller, 'abs'=>$legacy->abs, 'img'=>$legacy->img,'publish'=>strtotime($legacy->publish)*1000, 'price'=>$legacy->price];
+            $result[] = ['id'=>$legacy->id, 'seller'=>$legacy->seller, 'abs'=>$legacy->abs, 'img'=>$legacy->img,'publish'=>strtotime($legacy->publish)*1000, 'price'=>$legacy->price, 'type'=>$legacy->type];
         return json_encode($result);
     }
 
@@ -50,8 +50,7 @@ class PostController extends Controller{
 
     public function detail(){
         $legacy = Legacy::find(Input::get('id'));
-        $result = ['des'=>$legacy->des, 'seller'=>$legacy->seller];
-        return json_encode($result);
+        return $legacy->des;
     }
 
     public function publish(){
