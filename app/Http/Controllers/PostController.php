@@ -20,14 +20,12 @@ use Illuminate\Support\Facades\Session;
 class PostController extends Controller{
 
     public function recommend(){
-        /*$mate = Mate::find(Session::get(MateMiddleware::$VERIFY));
-        $result = [];
-        foreach($mate->interests as $interest){
-            $result[] = $interest->res;
-        }
-        $legacies = Legacy::whereIn('id', $result)->paginate(10);
-        return $this->buildAbsResult($legacies);*/
-        return $this->buildAbsResult(Legacy::all());
+        $mate = Mate::find(Session::get(MateMiddleware::$VERIFY));
+        $schooler = Mate::where('schoolid', '=', $mate->schoolid)->orderBy('register', 'desc')->get(['id'])->toArray();
+        $regional = Mate::where('region', '=', $mate->region)->whereNotIn('id', $schooler)->orderBy('register', 'desc')->get(['id'])->toArray();
+        $possible = array_merge($schooler, $regional);
+        $result = Legacy::whereIn('seller', $possible)->orderBy('publish', 'asc')->paginate(30);
+        return $this->buildAbsResult($result);
     }
 
     private function buildAbsResult($legacies){
