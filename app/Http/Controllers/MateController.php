@@ -35,11 +35,12 @@ class MateController extends Controller {
             'longi'=>Input::get('longi')]);
         $activecode = md5($email . strtotime($mate->register));
         $mate->activecode = $activecode;
+        $mate->save();
         $id = $mate->id;
+        echo $mate->id;
         Mail::queue('register',compact(['activecode', 'nickname', 'id']), function($message) use($email) {
             $message->to($email, '同学')->subject('欢迎注册');
         });
-        return $mate->id;
     }
 
     public function login(){
