@@ -19,9 +19,9 @@ use App\Mate;
 class MateController extends Controller {
     public function register(){
         $email = Input::get('email');
-        Mail::send('register',compact($email), function($message) use($email){
-            $message->to($email, 'xiaopan')->subject('hello');
-        });
+        //Mail::send('register',compact('email'), function($message) use($email){
+        //    $message->to('864633261@qq.com', 'xiaopan')->subject('hello');
+        //});
         $mate = Mate::create(['email'=>$email,
             'password'=>Input::get('password'),
             'nickname'=>Input::get('nickname'),

@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'host' => env('MAIL_HOST', 'mail.mxhichina.com'),
+	'host' => env('MAIL_HOST', 'smtp.mxhichina.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'passer@hereprovides.com', 'name' => '管理小员'],
+	'from' => ['address' => 'welcome@hereprovides.com', 'name' => 'passer'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
 	|
 	*/
 
-	'username' => env('passer@hereprovides.com'),
+	'username' => env('welcome@hereprovides.com'),
 
 	/*
 	|--------------------------------------------------------------------------
