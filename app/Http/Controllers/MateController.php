@@ -19,12 +19,12 @@ use App\Mate;
 class MateController extends Controller {
     public function register(){
         $email = Input::get('email');
-        //Mail::send('register',compact('email'), function($message) use($email){
-        //    $message->to('864633261@qq.com', 'xiaopan')->subject('hello');
-        //});
+        $nickname = Input::get('nickname');
+        if(Mate::where('email', '=', $email)->count() != 0)
+            return 'email_used';
         $mate = Mate::create(['email'=>$email,
             'password'=>Input::get('password'),
-            'nickname'=>Input::get('nickname'),
+            'nickname'=>$nickname,
             'school'=>Input::get('school'),
             'major'=>Input::get('major'),
             'schoolid'=>input::get('schoolid'),
@@ -33,6 +33,12 @@ class MateController extends Controller {
             'inform'=>false,
             'lati'=>Input::get('lati'),
             'longi'=>Input::get('longi')]);
+        $activecode = md5($email . strtotime($mate->register));
+        $mate->activecode = $activecode;
+        $id = $mate->id;
+        Mail::queue('register',compact(['activecode', 'nickname', 'id']), function($message) use($email) {
+            $message->to($email, '同学')->subject('欢迎注册');
+        });
         return $mate->id;
     }
 
@@ -44,11 +50,23 @@ class MateController extends Controller {
         }catch (ModelNotFoundException $e){
             return 'email_fail';
         }
+        if($mate->actived == 0)
+            return 'not_actived';
         if($mate->password == $password) {
             Session::put(MateMiddleware::$VERIFY, $mate->id);
             return $mate;
         }else
             return 'password_fail';
+    }
+
+    public function active(){
+        $mate = Mate::find(Input::get('id'));
+        if($mate->actived == 1)
+            return 'already_active';
+        if($mate->activecode != Input::get('code'))
+            return 'wrong_code';
+        $mate->actived = 1;
+        return 'activated';
     }
 
     public function info(){
