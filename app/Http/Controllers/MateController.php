@@ -67,6 +67,7 @@ class MateController extends Controller {
         if($mate->activecode != Input::get('code'))
             return 'wrong_code';
         $mate->actived = 1;
+        $mate->save();
         return 'activated';
     }
 
