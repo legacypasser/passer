@@ -37,10 +37,10 @@ class MateController extends Controller {
         $mate->activecode = $activecode;
         $mate->save();
         $id = $mate->id;
-        echo $mate->id;
         Mail::queue('register',compact(['activecode', 'nickname', 'id']), function($message) use($email) {
             $message->to($email, '同学')->subject('欢迎注册');
         });
+        return $mate->id;
     }
 
     public function login(){
