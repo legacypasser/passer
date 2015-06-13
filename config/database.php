@@ -54,10 +54,10 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => env('DB_HOST', 'www.hereprovides.com'),
+			'host'      => env('DB_HOST', 'localhost'),
 			'database'  => env('DB_DATABASE', 'legacybase'),
 			'username'  => env('DB_USERNAME', 'developer'),
-			'password'  => env('DB_PASSWORD', 'code4better'),
+			'password'  => env('DB_PASSWORD', 'Code4better'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
