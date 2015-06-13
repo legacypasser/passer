@@ -15,7 +15,7 @@ return [
 	|
 	*/
 
-	'driver' => env('MAIL_DRIVER', 'mail'),
+	'driver' => env('MAIL_DRIVER', 'sendmail'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'host' => env('MAIL_HOST', 'smtp.mxhichina.com'),
+	'host' => env('MAIL_HOST', 'smtp.mxhichina..com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'welcome@hereprovides.com', 'name' => 'passer'],
+	'from' => ['address' => 'welcome@hereprovides.com', 'name' => 'welcome'],
 
 	/*
 	|--------------------------------------------------------------------------
