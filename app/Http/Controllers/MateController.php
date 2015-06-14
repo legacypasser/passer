@@ -38,7 +38,7 @@ class MateController extends Controller {
         $mate->save();
         $id = $mate->id;
         Mail::send('register',compact(['activecode', 'nickname', 'id']), function($message) use($email) {
-            $message->to($email, '同学')->subject('欢迎注册');
+            $message->to($email, explode('@',$email)[0])->subject('欢迎注册');
         });
         return $id;
     }
