@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'welcome@hereprovides.com', 'name' => 'welcome'],
+	'from' => ['address' => 'welcome@hereprovides.com', 'name' => 'passer'],
 
 	/*
 	|--------------------------------------------------------------------------
