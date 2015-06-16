@@ -75,7 +75,7 @@ class PostController extends Controller{
         if($imgs != [null] && $imgs != null){
             foreach($imgs as $img) {
                 $oneName = $img->getClientOriginalName();
-                $img->move(base_path() . '/../passerImg', $oneName);
+                $img->move(base_path() . '/../../nginx/passerImg', $oneName);
             }
         }
         $content = Input::get('content');
