@@ -20,7 +20,7 @@ class MessageController extends Controller{
     public function offlineMessage(){
         $mate = Mate::find(Session::get(MateMiddleware::$VERIFY));
         if($mate->inform == false){
-            return 'empty';
+            return '[]';
         }else{
             $record = $mate->coming();
             $result = json_encode($record->get(['id', 'sender', 'receiver', 'content', 'edit']));
