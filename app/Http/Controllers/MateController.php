@@ -78,7 +78,7 @@ class MateController extends Controller {
     }
 
     public function infos(){
-        $mates = Mate::whereIn('id',Input::get('ids'));
+        $mates = Mate::whereIn('id',explode(',',Input::get('ids')))->get();
         $result = [];
         foreach($mates as $mate){
             $result[] = ['id'=>$mate->id, 'nickname'=>$mate->nickname, 'school'=>$mate->school, 'major'=>$mate->major, 'lati'=>$mate->lati, 'longi'=>$mate->longi];
