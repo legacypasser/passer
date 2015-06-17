@@ -38,9 +38,8 @@ class PostController extends Controller{
     }
 
     private function getPeer($id){
-        $possible = PostController::$peers[$id];
-        if($possible != null)
-            return $possible;
+        if(array_key_exists($id, PostController::$peers))
+            return PostController::$peers[$id];
         $mate = Mate::find($id);
         $schooler = Mate::where('schoolid', '=', $mate->schoolid)->orderBy('register', 'desc')->get(['id'])->toArray();
         $regional = Mate::where('region', '=', $mate->region)->whereNotIn('id', $schooler)->orderBy('register', 'desc')->get(['id'])->toArray();
