@@ -19,17 +19,16 @@ use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller{
 
-    private static $PEERS = 'peers';
 	private static $EACHPAGE = 16;
+    private static $peers = [];
     public function recommend(){
-        if(Session::get(MateMiddleware::$VERIFY) == null){
+        $requester = Input::get('id');
+        if($requester == -1){
             $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(PostController::$EACHPAGE);
             return $this->buildAbsResult($result);
         }
-        if(Session::get(PostController::$PEERS) != null)
-            $possible = Session::get(PostController::$PEERS);
-        else
-            $possible = $this->getPeer(Session::get(MateMiddleware::$VERIFY));
+
+        $possible = $this->getPeer($requester);
         $resultPre = Legacy::whereIn('seller', $possible)->orderBy('publish', 'asc');
         if($resultPre->count() == 0)
             $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(PostController::$EACHPAGE);
@@ -39,11 +38,14 @@ class PostController extends Controller{
     }
 
     private function getPeer($id){
+        $possible = PostController::$peers[$id];
+        if($possible != null)
+            return $possible;
         $mate = Mate::find($id);
         $schooler = Mate::where('schoolid', '=', $mate->schoolid)->orderBy('register', 'desc')->get(['id'])->toArray();
         $regional = Mate::where('region', '=', $mate->region)->whereNotIn('id', $schooler)->orderBy('register', 'desc')->get(['id'])->toArray();
         $possible = array_merge($schooler, $regional);
-        Session::put(PostController::$PEERS, $possible);
+        PostController::$peers[$id] = $possible;
         return$possible;
     }
 
