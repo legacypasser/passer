@@ -16,6 +16,7 @@ use App\Mate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PostController extends Controller{
 
@@ -41,7 +42,7 @@ class PostController extends Controller{
         if(array_key_exists($id, PostController::$peers))
             return PostController::$peers[$id];
         try{
-            $mate = Mate::find($id);
+            $mate = Mate::findOrFail($id);
         }catch(ModelNotFoundException $e){
             return [];
         }
