@@ -7,7 +7,7 @@
     <body>
         <h1>{{$nickname}}同学：</h1>
         <h2>
-            <a href="{{'http://www.hereprovides.com/passer/public/index.php/activate?id='.$id.'&code='.$activecode}}">
+            <a href="{{'http://www.hereprovides.com/passer/public/index.php/activate?id='.$id.'&code='.$activecode}}" target="_blank">
                 Click here to activate your account.
             </a>
         </h2>
