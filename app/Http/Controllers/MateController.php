@@ -68,7 +68,7 @@ class MateController extends Controller {
             return 'wrong_code';
         $mate->actived = 1;
         $mate->save();
-        return view('activated');
+        return view('actived');
     }
 
     public function info(){
