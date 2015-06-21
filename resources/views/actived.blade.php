@@ -72,7 +72,7 @@
         账号激活成功
     </div>
     <div class="main-extra">
-        请按返回键回到应用页面
+        现在可以去登陆了，么么哒
     </div>
 </div>
 <div class="footer">
