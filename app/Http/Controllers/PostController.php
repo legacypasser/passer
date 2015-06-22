@@ -30,7 +30,7 @@ class PostController extends Controller{
         }
 
         $possible = $this->getPeer($requester);
-        $resultPre = Legacy::whereIn('seller', $possible)->orderBy('publish', 'asc');
+        $resultPre = Legacy::whereIn('seller', $possible)->orderBy('publish', 'desc');
         if($resultPre->count() == 0)
             $result = DB::table('legacy')->orderBy('publish', 'desc')->paginate(PostController::$EACHPAGE);
         else
